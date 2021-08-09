@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "ui for the movie analyst website....im totally not ripping this off.......",
   "scripts": {
-    "test": "mocha"
+    "test": "testcafe chrome tests/test.js",
+    "server": "json-server --watch db.json"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,9 @@
     "ejs": "^2.5.7",
     "express": "^4.15.4",
     "superagent": "^3.6.0"
+  },
+  "devDependencies": {
+    "json-server": "^0.16.3",
+    "testcafe": "^1.15.1"
   }
 }
