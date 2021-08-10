@@ -2,9 +2,9 @@ pipeline{
     agent any
     stages{
         stage("run-test"){
-            steps {
-                parallel {
-                    run: {
+            parallel {
+                stage("run"){
+                    steps{
                         echo "========executing run========"
 
                         sh """
@@ -16,13 +16,17 @@ pipeline{
                             npm start
                         """
                     }
-                    mock_api:{
+                }
+                stage("mock-api"){
+                    steps{
                         echo "========executing mock-api========"
                         sh """
                             npm run server
                         """
                     }
-                    test:{
+                }
+                stage("test"){
+                    steps{
                         echo "========executing test========"
                         sh """
                             sleep 5000
