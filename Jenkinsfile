@@ -14,7 +14,7 @@ pipeline{
                             export HOME=~/
 
                             npm install
-                            
+
                             npm start
                         """
                     }
@@ -31,7 +31,7 @@ pipeline{
                     steps{
                         echo "========executing test========"
                         sh """
-                            sleep 5000
+                            sleep 5
                             npm run test
                         """
                     }
