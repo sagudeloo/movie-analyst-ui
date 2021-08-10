@@ -13,6 +13,8 @@ pipeline{
                             export BACK_HOST="3000"
                             export HOME=~/
 
+                            npm install
+                            
                             npm start
                         """
                     }
