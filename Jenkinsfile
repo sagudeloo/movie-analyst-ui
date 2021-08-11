@@ -1,5 +1,10 @@
 pipeline{
-    agent any
+    agent {
+        docker {
+            image 'node:lts-alpine3.14'
+            args '-p 3030:3030'
+        }
+    }
     stages{
         stage("run-test"){
             parallel {
