@@ -6,6 +6,13 @@ pipeline{
         }
     }
     stages{
+        stage("setup"){
+            steps{
+                sh """
+                    npm install
+                """
+            }
+        }
         stage("run-test"){
             parallel {
                 stage("run"){
@@ -17,8 +24,6 @@ pipeline{
                             export BACK_HOST="localhost"
                             export BACK_HOST="3000"
                             export HOME=~/
-
-                            npm install
 
                             npm start
                         """
