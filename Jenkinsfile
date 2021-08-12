@@ -1,7 +1,7 @@
 pipeline{
     agent {
         docker {
-            image 'node:lts-alpine3.14'
+            image 'selenium/node-chrome:latest'
             args '-p 3030:3030 -u root'
         }
     }
