@@ -6,11 +6,13 @@ pipeline{
     }
     stages{
         stage("setup"){
+            environment{
+                NPM_CACHE="${WORKSPACE}/.npm-global"
+            }
             steps{
                 sh """
-                    export NPM_CACHE="$WORKSPACE/.npm-global"
-                    mkdir -p ${NPM_CACHE}
-                    npm config set prefix '${NPM_CACHE}'
+                    mkdir -p ${env.NPM_CACHE}
+                    npm config set prefix '${env.NPM_CACHE}'
                     npm install
                     npm install pm2
                 """
