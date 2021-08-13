@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "ui for the movie analyst website....im totally not ripping this off.......",
   "scripts": {
-    "start": "node server.js",
+    "start": "pm2 start server.js",
     "test": "testcafe chrome:headless tests/test.js",
-    "server": "json-server --watch db.json"
+    "server": "json-server db.json >> ./json-server.log 2>&1 </dev/null &"
   },
   "repository": {
     "type": "git",

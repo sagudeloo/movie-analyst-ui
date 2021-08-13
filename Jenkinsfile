@@ -2,7 +2,6 @@ pipeline{
     agent {
         docker {
             image 'timbru31/node-chrome:latest'
-            args '-p 3030:3030 -u root'
         }
     }
     stages{
@@ -10,12 +9,13 @@ pipeline{
             steps{
                 sh """
                     npm install
+                    npm install pm2
                 """
             }
         }
         stage("run-test"){
-            parallel {
-                stage("run"){
+            // parallel {
+            //     stage("run"){
                     steps{
                         echo "========executing run========"
 
@@ -25,28 +25,28 @@ pipeline{
                             export BACK_HOST="3000"
                             export HOME=~/
 
-                            npm start
-                        """
-                    }
-                }
-                stage("mock-api"){
-                    steps{
-                        echo "========executing mock-api========"
-                        sh """
+                            pm2 start npm -- start
                             npm run server
-                        """
-                    }
-                }
-                stage("test"){
-                    steps{
-                        echo "========executing test========"
-                        sh """
                             sleep 5
                             npm run test
                         """
                     }
-                }
-            }
+                // }
+                // stage("mock-api"){
+                //     steps{
+                //         echo "========executing mock-api========"
+                //         sh """
+                //         """
+                //     }
+                // }
+                // stage("test"){
+                //     steps{
+                //         echo "========executing test========"
+                //         sh """
+                //         """
+                //     }
+                // }
+        //     }
         }
     }
     post{
