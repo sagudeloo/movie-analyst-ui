@@ -8,7 +8,7 @@ pipeline{
         stage("setup"){
             steps{
                 sh """
-                    NPM_CACHE="$WORKSPACE/.npm-global"
+                    export NPM_CACHE="$WORKSPACE/.npm-global"
                     mkdir -p "$NPM_CACHE"
                     npm config set prefix "$NPM_CACHE"
                     npm install
