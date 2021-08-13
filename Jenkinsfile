@@ -50,6 +50,9 @@ pipeline{
         }
     }
     post{
+        always{
+            deleteDir()
+        }
         success{
             echo "========pipeline executed successfully ========"
         }
