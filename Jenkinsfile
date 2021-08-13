@@ -8,8 +8,9 @@ pipeline{
         stage("setup"){
             steps{
                 sh """
-                    mkdir -p ${{WORKSPACE}}/.npm-global
-                    npm config set prefix '${{WORKSPACE}}/.npm-global'
+                    NPM_CACHE="$WORKSPACE/.npm-global"
+                    mkdir -p "$NPM_CACHE"
+                    npm config set prefix "$NPM_CACHE"
                     npm install
                     npm install pm2
                 """
