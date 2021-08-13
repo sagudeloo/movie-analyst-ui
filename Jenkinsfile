@@ -9,8 +9,8 @@ pipeline{
             steps{
                 sh """
                     export NPM_CACHE="$WORKSPACE/.npm-global"
-                    mkdir -p "$NPM_CACHE"
-                    npm config set prefix "$NPM_CACHE"
+                    mkdir -p ${NPM_CACHE}
+                    npm config set prefix '${NPM_CACHE}'
                     npm install
                     npm install pm2
                 """
