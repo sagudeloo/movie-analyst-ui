@@ -4,7 +4,7 @@
   "description": "ui for the movie analyst website....im totally not ripping this off.......",
   "scripts": {
     "start": "node server.js",
-    "test": "testcafe chrome tests/test.js",
+    "test": "testcafe chrome:headless tests/test.js",
     "server": "json-server --watch db.json"
   },
   "repository": {
