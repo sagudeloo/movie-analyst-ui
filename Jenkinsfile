@@ -7,52 +7,24 @@ pipeline{
     }
     stages{
         stage("setup"){
-            environment{
-                NPM_CACHE="${WORKSPACE}/.npm-global"
-            }
             steps{
                 sh """
-                    mkdir -p ${env.NPM_CACHE}
-                    npm config set prefix '${env.NPM_CACHE}'
                     npm install
-                    npm install pm2
                 """
             }
         }
         stage("run-test"){
-            // parallel {
-            //     stage("run"){
-                    steps{
-                        echo "========executing run========"
+            steps{
+                echo "========executing run========"
 
-                        sh """
-                            export PORT="3030"
-                            export BACK_HOST="localhost"
-                            export BACK_HOST="3000"
-                            export HOME=~/
-
-                            pm2 start npm -- start
-                            npm run server
-                            sleep 5
-                            npm run test
-                        """
-                    }
-                // }
-                // stage("mock-api"){
-                //     steps{
-                //         echo "========executing mock-api========"
-                //         sh """
-                //         """
-                //     }
-                // }
-                // stage("test"){
-                //     steps{
-                //         echo "========executing test========"
-                //         sh """
-                //         """
-                //     }
-                // }
-        //     }
+                sh """
+                    export PORT="3030"
+                    export BACK_HOST="localhost"
+                    export BACK_HOST="3000"
+                    
+                    npm run test
+                """
+            }
         }
     }
     post{
