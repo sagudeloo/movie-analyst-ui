@@ -1,7 +1,7 @@
 pipeline{
     agent {
         docker {
-            image 'timbru31/node-chrome:latest'
+            image 'testcafe/testcafe'
             args '-u root:root'
         }
     }
