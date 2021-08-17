@@ -2,6 +2,7 @@ pipeline{
     agent {
         docker {
             image 'timbru31/node-chrome:latest'
+            args '-u root:root'
         }
     }
     stages{
