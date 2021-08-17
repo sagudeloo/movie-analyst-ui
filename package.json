@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "ui for the movie analyst website....im totally not ripping this off.......",
   "scripts": {
-    "start": "pm2 start server.js",
+    "start": "node server.js",
+    "ui": "pm2 --name ui start npm -- start",
     "test": "testcafe chrome:headless tests/test.js",
-    "server": "json-server db.json >> ./json-server.log 2>&1 </dev/null &"
+    "pretest": "npm run ui && nohup json-server db.json >> ./json-server.log 2>&1 </dev/null &"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   },
   "devDependencies": {
     "json-server": "^0.16.3",
+    "pm2": "^5.1.0",
     "testcafe": "^1.15.1"
   }
 }
