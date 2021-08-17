@@ -29,6 +29,9 @@ pipeline{
     }
     post{
         always{
+            sh """
+                cat json-server.log
+            """
             echo "========UI output========"
             sh """
                 curl localhost:3030/movies
