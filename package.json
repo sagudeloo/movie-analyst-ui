@@ -5,8 +5,10 @@
   "scripts": {
     "start": "node server.js",
     "ui": "pm2 --name ui start npm -- start",
+    "setuptest": "npm run ui && nohup json-server db.json >> ./json-server.log 2>&1 </dev/null &",
+    "postsetuptest": "sleep 5",
     "test": "testcafe chrome:headless tests/test.js",
-    "pretest": "npm run ui && nohup json-server db.json >> ./json-server.log 2>&1 </dev/null &"
+    "pretest": "npm run setuptest"
   },
   "repository": {
     "type": "git",
