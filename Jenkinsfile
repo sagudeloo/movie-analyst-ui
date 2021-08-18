@@ -24,6 +24,14 @@ pipeline{
                     
                     npm run test
                 """
+                echo "========UI output========"
+                sh """
+                    curl localhost:3030/movies
+                """
+                echo "========Backend output========"
+                sh """
+                    curl localhost:3000/movies
+                """
             }
         }
     }
@@ -31,14 +39,6 @@ pipeline{
         always{
             sh """
                 cat json-server.log
-            """
-            echo "========UI output========"
-            sh """
-                curl localhost:3030/movies
-            """
-            echo "========Backend output========"
-            sh """
-                curl localhost:3000/movies
             """
             deleteDir()
         }
