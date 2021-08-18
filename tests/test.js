@@ -1,19 +1,18 @@
 import { Selector } from 'testcafe';
-const numOfTitles = 7
 
 fixture `UI_TEST`
 .page `http://localhost:3030/`
 
 test
-.page `http://localhost:3030/movies`
+.page `http://localhost:3030/`
 (
-    'Movies', async t => {
+    'Categories', async t => {
 
-        console.log('Testing movies path.');
+        console.log('Testing root path.');
 
-        var movieTitles = Selector('.panel-title');
-        var movieCount = movieTitles.count;
+        var titles = Selector(".panel-title", t);
+        var titleCount = titles.count;
 
-        await t.expect(movieCount).eql(numOfTitles);
+        await t.expect(titleCount).eql(3);
     }
 )
