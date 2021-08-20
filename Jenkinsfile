@@ -20,7 +20,7 @@ pipeline{
                 sh """
                     export PORT="3030"
                     export BACK_HOST="localhost"
-                    export BACK_HOST="3000"
+                    export BACK_PORT="3000"
                     
                     npm run test
                 """
