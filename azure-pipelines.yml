@@ -32,8 +32,8 @@ steps:
 - task: Docker@2
   displayName: Build and push image
   inputs:
+    containerRegistry: 'Docker hub'
     repository: 'sagudeloo/movie-analyst-ui'
     command: 'buildAndPush'
-    dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-    tags: |
-      $(tag)
+    Dockerfile: '**/Dockerfile'
+    tags: '$(tag)'
