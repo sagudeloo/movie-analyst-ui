@@ -10,6 +10,7 @@ resources:
 
 variables:
   tag: '$(Build.BuildId)'
+  latest: 'latest'
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -36,4 +37,4 @@ steps:
     repository: 'sagudeloo/movie-analyst-ui'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
-    tags: '$(tag)'
+    tags: '$(latest)'
