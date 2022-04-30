@@ -11,19 +11,29 @@ resources:
 variables:
   tag: '$(Build.BuildId)'
 
-stages:
-- stage: Build
-  displayName: Build image
-  jobs:
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-    - task: Docker@2
-      displayName: Build an image
-      inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        tags: |
-          $(tag)
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '16.15.0'
+  displayName: 'Install Node.js'
+
+- task: Npm@1
+  inputs:
+     command: 'install'
+  displayName: 'npm install'
+
+- script: |
+    npm run test
+  displayName: 'npm test'
+
+- task: Docker@2
+  displayName: Build and push image
+  inputs:
+    repository: 'sagudeloo/movie-analyst-ui'
+    command: 'buildAndPush'
+    dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+    tags: |
+      $(tag)
