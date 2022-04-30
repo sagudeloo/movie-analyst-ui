@@ -9,7 +9,9 @@ resources:
 - repo: self
 
 variables:
-  tag: '$(Build.BuildId)'
+  tag: 
+  - '$(Build.BuildId)'
+  - latest
 
 pool:
   vmImage: 'ubuntu-latest'
